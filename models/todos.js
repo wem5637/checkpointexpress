@@ -3,7 +3,7 @@
 var tasks = {}; // a place to store tasks by person
 
 
-module.exports= {
+module.exports = {
     reset: function() {
         tasks = {}; // (this function is completed for you.)
     },
@@ -18,6 +18,9 @@ module.exports= {
     },
     add: function(name, task) {
         // saves a task for a given person
+        if (!task.complete) {
+            task.complete = false;
+        }
         if (tasks[name]) {
             tasks[name].push(task);
         } else {
@@ -25,5 +28,18 @@ module.exports= {
 
         }
         // etc.
+    },
+    list: function(name) {
+
+        return tasks[name];
+    },
+    complete: function(name, index) {
+
+        tasks[name][index].complete = true;
+    },
+    remove: function(name, index) {
+        tasks[name].splice(index, 1);
+
     }
+
 };
